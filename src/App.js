@@ -8,58 +8,54 @@ import { Component, useState } from 'react';
 
 function App() {
 
-  const auto = [
+  const paises = [
     {
-      imagen:'https://cnnespanol.cnn.com/wp-content/uploads/2017/06/170628112455-jaguar-xe-sv-780x439.jpg?quality=100&strip=info',
-      marca: 'JAGUAR',
-      placa: 'ASD-456'
-      },
+      continente:'europa',
+      pais:'alemania',
+      capital: 'berlin'
+    },
     {
-      imagen:'https://cnnespanol.cnn.com/wp-content/uploads/2017/06/170628112455-jaguar-xe-sv-780x439.jpg?quality=100&strip=info',
-      marca: 'JAGUAR',
-      placa: 'ASD-456'
-      },
+      continente:'europa',
+      pais:'alemania',
+      capital: 'berlin'
+    },
     {
-      imagen:'https://cnnespanol.cnn.com/wp-content/uploads/2017/06/170628112455-jaguar-xe-sv-780x439.jpg?quality=100&strip=info',
-      marca: 'JAGUAR',
-      placa: 'ASD-456'
+      continente:'europa',
+      pais:'alemania',
+      capital: 'berlin'
     }
   ]
-  
   const [valorInput, setValorInput] = useState('')
-  const [array_carros,setArray_carros] = useState(auto)
-  
-  function agregarAnimal(e){
+  const [Array, setArray] = useState(paises)
+    
+  function daleClick(e){
     setValorInput(e.target.value)
   }
-  function daleClick(){
-    if (valorInput === '') return
-    const copyArray_carros = [...array_carros]
-    copyArray_carros.push({
-      imagen:'https://cnnespanol.cnn.com/wp-content/uploads/2017/06/170628112455-jaguar-xe-sv-780x439.jpg?quality=100&strip=info',
-      marca: valorInput,
-      placa: 'ASD-456'
+  
+  function agregarClick(){
+    const copia_Array= [...Array]
+    console.log(valorInput)
+    copia_Array.push({
+      continente:'europa',
+      pais:valorInput,
+      capital: 'berlin'
     })
-    setArray_carros(copyArray_carros)
+    console.log(copia_Array)
+    setArray(copia_Array)
     setValorInput('')
   }
   return(
     <div>
-      <div> 
-        {array_carros.map((e,i)=> (
-          <div key={i}>
-            {e.marca} - {e.placa} - posición: {i}
-            {i === 1 ? '- SOY LA SEGUNDA POSICIÓN' : '' }
-            </div>
-        ))}
+      <div>
+        {Array.map((e)=><div>{e.pais}</div>)}
+
       </div>
       <div>
-        <input value={valorInput} onChange={agregarAnimal}/>
-            
-    
-        <button onClick={daleClick}>
-          Agregar
-        </button>
+        <input onChange={daleClick} value={valorInput}/>
+        <button onClick={agregarClick}>Agregar</button>  
+      </div>
+      <div>
+
       </div>
     </div> 
   ) 
