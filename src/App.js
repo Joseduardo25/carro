@@ -2,60 +2,44 @@ import React from 'react';
 import './App.css';
 import { Component, useState } from 'react';
 
-
-  
-
-
 function App() {
 
-  const paises = [
+  const persona = [
     {
-      continente:'europa',
-      pais:'alemania',
-      capital: 'berlin'
-    },
-    {
-      continente:'europa',
-      pais:'alemania',
-      capital: 'berlin'
-    },
-    {
-      continente:'europa',
-      pais:'alemania',
-      capital: 'berlin'
+      nombre: 'eduardo',
+      apellido: 'calachua',
+      edad: 25,
+      sexo: 'M',
+      direccion: 'calle - 123'
     }
   ]
-  const [valorInput, setValorInput] = useState('')
-  const [Array, setArray] = useState(paises)
-    
-  function daleClick(e){
+  const[valorInput, setValorInput] = useState('')
+  const[usuario, setUsuario] = useState(persona)
+
+  function newValue(e){
     setValorInput(e.target.value)
   }
-  
-  function agregarClick(){
-    const copia_Array= [...Array]
-    console.log(valorInput)
-    copia_Array.push({
-      continente:'europa',
-      pais:valorInput,
-      capital: 'berlin'
+  function addValue(){
+    const copia_usuario = [...usuario]
+    copia_usuario.push({
+      nombre: 'eduardo',
+      apellido: 'calachua',
+      edad: 25,
+      sexo: 'M',
+      direccion: valorInput
     })
-    console.log(copia_Array)
-    setArray(copia_Array)
+    setUsuario(copia_usuario)
     setValorInput('')
   }
+  
   return(
     <div>
       <div>
-        {Array.map((e)=><div>{e.pais}</div>)}
-
+      {usuario.map((e) => (<div>{e.direccion}</div>))}
       </div>
       <div>
-        <input onChange={daleClick} value={valorInput}/>
-        <button onClick={agregarClick}>Agregar</button>  
-      </div>
-      <div>
-
+        <input value={valorInput} onChange={newValue}/>
+        <button onClick={addValue}>Agregar</button>
       </div>
     </div> 
   ) 
